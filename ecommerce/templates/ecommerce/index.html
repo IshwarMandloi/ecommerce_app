@@ -1,0 +1,43 @@
+{% extends "ecommerce/base.html" %}
+<style>
+    h1{
+        font-family: cursive;color:red;
+    }
+    .bg{
+        height:200px;background:url("/static/images/nature.jpg");
+    }
+    .myimg{
+        height:300px;
+    }
+    .box:hover{
+        height:100%;width:100%;background:rgba(0,0,0,0.5);color:white;
+    }
+</style>
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row py-5 " style="background:url('/static/images/c2.jpg');background-size:100% 100%">
+        <div class="col-md-8 mx-auto my-5">
+        <center><h1 style="color: white">Our Categories ({{category|length}})</h1></center>
+        </div>
+    </div>
+
+
+<div class="row">
+     <div class="col-md-12 text-center">
+     </div>
+     {% for c in category %}
+        <div class="col-md-4 p-4 text-center">
+            <div style="box-shadow:0px 0px 10px black; background:url('/media/{{c.cover_pic}}');background-size:100% 100%;" class="myimg">
+                <!-- <img src="/media/{{c.cover_pic}}" height="200"> -->
+                <a href="{% url 'all_products' %}?cat={{c.id}}">
+                    <div  class="box" style="height:300px;">
+                        <h2 style="padding-top: 60%">{{c.cat_name}}</h2>
+                        <p>{{c.description}}</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+{% endblock content %}
