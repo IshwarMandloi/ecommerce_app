@@ -1,13 +1,13 @@
 {% extends "ecommerce/base.html" %}
-
-{% block content %}
-
+{% load static %}
+{% block head %}
 <style>
     .cart td{
         width:20%;
     }
 </style>
-
+{% endblock %}
+{% block myblock %}
 {% if user.is_superuser %}
     <h1 class="jumbotron my-3">YOU ARE NOT ALLOWED HERE</h1>
 {% else %}
@@ -18,7 +18,7 @@
         </div>
     </div>
 {% else %}
-    <div class="container-fluid" style="background:url('/static/images/c2.jpg');background-size:100% 100%;">
+    <div class="container-fluid" style="background:url('/static/images/c1.jpg');background-size:100% 100%;">
         <div class="row py-5" style="background:rgba(0,0,0,0.5)">
             <div class="col-md-12 py-5 my-2 text-light text-center font-weight-bold text-uppercase">
                 {% if status %}
@@ -51,9 +51,9 @@
                     <tbody>
                         {% for i in items %}
                             <tr id="row{{i.id}}">
-                                <td><img src="/media/{{i.product.product_image}}" style="height:100px;width:150px;"></td>
-                                <td>{{i.product.product_name}}</td>
-                                <td>&#8377;<del id="pp{{i.id}}">{{i.product.product_price}}</del> &#8377; <span id="sp{{i.id}}"> {{i.product.sale_price}}</span></td>
+                                <td><img src="/media/{{i.product.image}}" style="height:100px;width:150px;"></td>
+                                <td>{{i.product.name}}</td>
+                                <td>&#8377;<del id="pp{{i.id}}">{{i.product.price}}</del> &#8377; <span id="sp{{i.id}}"> {{i.product.sale_price}}</span></td>
                                 <td>
                                     <div class="row">
                                         <div class="col-md-3">
@@ -115,8 +115,6 @@
            </div>
         </div>
     </div>
-  
-
    <script>
        function grandTotal(){
            $.ajax({
@@ -176,10 +174,9 @@
            })
        }
    </script>
-{% endif %}
 
 {% endif %}
+
+    {% endif %}
 {% endif %}
-
-
-{% endblock content %}
+{% endblock %}

@@ -9,11 +9,10 @@ from django.views.generic import TemplateView
 urlpatterns = [
     
     path("signup/",views.register,name="signup"),
-	path("user_login",views.user_login,name="user_login"),
-	path("check_user/",views.check_user,name="check_user"),
-	path("user_logout/",views.user_logout,name="user_logout"),
-	
-	path("change_password/",views.change_password,name="change_password"),
+	path("login/",views.user_login,name="login"),
+	path("check-user/",views.check_user,name="check-user"),
+	path("logout/",views.user_logout,name="logout"),
+	path("change-password/",views.change_password,name="change-password"),
 	
 
 #########################################################################################################################################

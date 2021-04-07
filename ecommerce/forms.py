@@ -1,9 +1,9 @@
 from django import forms
-from ecommerce.models import add_product
+from ecommerce.models import Product
 
-class add_product_form(forms.ModelForm):
+class ProductForm(forms.ModelForm):
     class Meta:
-        model = add_product
+        model = Product
         
         # exclude = ["product_name","details"]
-        fields = ["product_name","product_category","product_price","sale_price","product_image","details"]
+        fields = ["name","category","price","sale_price","image","details"]

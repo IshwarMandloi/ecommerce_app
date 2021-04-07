@@ -5,7 +5,7 @@ import datetime
 
 #########################################################################################################################################
 
-class register_table(models.Model):
+class RegisterTable(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     contact_number = models.IntegerField()
     profile_pic =models.ImageField(upload_to = "profiles/%Y/%m/%d",null=True,blank=True)
@@ -20,9 +20,7 @@ class register_table(models.Model):
     def __str__(self):
         return self.user.username
 
-    class Meta:
-        db_table="register_table"    
-
+    
 
 
 #########################################################################################################################################        

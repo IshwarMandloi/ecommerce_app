@@ -11,7 +11,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.views.generic import TemplateView, View, ListView
 from django.views.generic.edit import CreateView, UpdateView
 from django.contrib import messages
-from .models import register_table
+from .models import RegisterTable
 from django.core.mail import EmailMessage
 
 #########################################################################################################################################
@@ -28,8 +28,8 @@ def register(request):
         if usr.is_active:
             return HttpResponseRedirect("/my_account")
     if request.method=="POST":
-        fname = request.POST["first"]
         last = request.POST["last"]
+        fname = request.POST["first"]
         un = request.POST["uname"]
         pwd = request.POST["password"]
         em = request.POST["email"]
@@ -43,7 +43,7 @@ def register(request):
             usr.is_staff = True
         usr.save()
 
-        reg = register_table(user=usr, contact_number=con)
+        reg = RegisterTable(user=usr, contact_number=con)
         reg.save()
         return render(request,"account/sign_up.html",{"status":"Mr/Miss. {} your Account created Successfully".format(fname)})
     return render(request,"account/sign_up.html")
@@ -88,7 +88,7 @@ def user_login(request):
                 return HttpResponseRedirect("/admin")
             else:
                 messages.success(request," Successfully Logged in ")
-                res = HttpResponseRedirect("/all_products")
+                res = HttpResponseRedirect("/products")
                 if "rememberme" in request.POST:
                     res.set_cookie("user_id",user.id)
                     res.set_cookie("date_login",datetime.now())

@@ -58,7 +58,7 @@
     function checkuser(){
         let un = document.getElementById("username").value;
         $.ajax({
-            url:"{% url 'check_user' %}",
+            url:"{% url 'check-user' %}",
             type:"get",
             data:{usern:un},
             success:function(data){
